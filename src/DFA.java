@@ -3,12 +3,12 @@ import java.util.ArrayList;
 class DFA {
 
     private final ArrayList<State> states;
-    private final ArrayList alphabets;
+    private final ArrayList<String> alphabets;
     private final TransitionTable transitionTable;
     private final State initialState;
     private final ArrayList<State> finalStates;
 
-    DFA(ArrayList<State> states, ArrayList alphabets, TransitionTable transitionTable, State initialState, ArrayList<State> finalStates) {
+    DFA(ArrayList<State> states, ArrayList<String> alphabets, TransitionTable transitionTable, State initialState, ArrayList<State> finalStates) {
 
         this.states = states;
         this.alphabets = alphabets;
@@ -18,32 +18,17 @@ class DFA {
     }
 
     public boolean isLanguage(ArrayList<String> inputString) throws RuntimeException {
-        State currentState = initialState;
-        for (String input : inputString) {
-            currentState = transitToNextState(currentState, input);
-        }
-        return finalStates.contains(currentState);
-    }
-
-    private State transitToNextState(State currentState, String input) {
-        if (isValid(input)) {
-            Transition transition = getTransition(currentState);
-            currentState = transition.get(input);
+        TransitionFunction transitionFunction = new TransitionFunction();
+        State finalState;
+        if (isValid(inputString) && transitionFunction.validateStates(states, transitionTable)) {
+            finalState = transitionFunction.transitToFinalState(initialState, inputString, transitionTable);
         } else {
             throw new InvalidAlphabetException();
         }
-        return currentState;
+        return finalStates.contains(finalState);
     }
 
-    private Transition getTransition(State currentState) {
-        Transition transition = transitionTable.get(currentState);
-        if (transition == null) {
-            throw new InvalidStateException();
-        }
-        return transition;
-    }
-
-    private boolean isValid(String inputString) {
-        return alphabets.contains(inputString);
+    private boolean isValid(ArrayList<String> inputString) {
+        return alphabets.containsAll(inputString);
     }
 }
