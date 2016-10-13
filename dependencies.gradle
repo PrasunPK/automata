@@ -1,0 +1,10 @@
+repositories {
+    jcenter()
+    mavenLocal()
+    maven { url "http://repo1.maven.org/maven2" }
+}
+
+dependencies{
+    compile 'org.projectlombok:lombok:1.16.6'
+    testCompile 'junit:junit:4.11'
+}

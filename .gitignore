@@ -1,6 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea/
 automata.iml
-dfa_assignments.iml
-lib/
+data/
+.gradle/
+build/
 out/
+.DS_Store
