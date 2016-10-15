@@ -6,3 +6,5 @@ data/
 build/
 out/
 .DS_Store
+automata.ipr
+automata.iws
