@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-class DFA {
+public class DFA {
 
     private final ArrayList<State> states;
     private final ArrayList<String> alphabets;
@@ -8,8 +8,7 @@ class DFA {
     private final State initialState;
     private final ArrayList<State> finalStates;
 
-    DFA(ArrayList<State> states, ArrayList<String> alphabets, TransitionTable transitionTable, State initialState, ArrayList<State> finalStates) {
-
+    public DFA(ArrayList<State> states, ArrayList<String> alphabets, TransitionTable transitionTable, State initialState, ArrayList<State> finalStates) {
         this.states = states;
         this.alphabets = alphabets;
         this.transitionTable = transitionTable;

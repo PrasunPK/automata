@@ -10,8 +10,12 @@ public class DataParser {
 
     public JsonObject parse(String jsonString) {
         Gson gson = new Gson();
-        jsonString = jsonString.replaceAll("\\\\", "");
         return gson.fromJson(jsonString, JsonObject.class);
+    }
+
+    public String replaceCharacter(String jsonString, String charToReplace) {
+        jsonString = jsonString.replaceAll(charToReplace, "");
+        return jsonString;
     }
 
     public Tuple convertToFormat(JsonObject jsonObject) {

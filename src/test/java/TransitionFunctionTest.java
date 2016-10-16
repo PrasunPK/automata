@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class TransitionFunctionTest {
 
@@ -70,6 +71,26 @@ public class TransitionFunctionTest {
         State initialState = q0;
         State state = transitionFunction.transitToFinalState(initialState, input, transitionTable);
         assertThat(state.getName(), is(expectedFinalState.getName()));
+    }
+
+    @Test
+    public void shouldValidateStateBasedOnTheTransitionTableAndStatesGivenToTheDFA() throws Exception {
+        states.addAll(asList(q0, q1));
+        Transition transitionFromQ0 = new Transition();
+        transitionFromQ0.put("1", q1);
+        transitionFromQ0.put("0", q0);
+        Transition transitionFromQ1 = new Transition();
+        transitionFromQ1.put("1", q1);
+        transitionFromQ1.put("0", q0);
+
+        transitionTable.put(q0, transitionFromQ0);
+        transitionTable.put(q1, transitionFromQ1);
+
+        input.addAll(asList("1", "0", "1"));
+
+        TransitionFunction transitionFunction = new TransitionFunction();
+        Boolean validation = transitionFunction.validateStates(states, transitionTable);
+        assertTrue(validation);
     }
 
 
