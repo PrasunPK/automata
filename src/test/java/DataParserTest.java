@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -16,5 +17,8 @@ public class DataParserTest {
         Tuple tuple = dataParser.convertToFormat(jsonObject);
         assertThat(tuple.getInitialState().getName(), is(q1.getName()));
         assertThat(tuple.getFinalStates().get(0).getName(), is(q2.getName()));
+        assertThat(tuple.getAlphabets(), is(asList("1", "0")));
+        assertThat(tuple.getStates().get(0).getName(), is(q1.getName()));
+        assertThat(tuple.getTransitionTable().getClass().getCanonicalName(), is(TransitionTable.class.getCanonicalName()));
     }
 }

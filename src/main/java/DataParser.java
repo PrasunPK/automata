@@ -33,14 +33,14 @@ public class DataParser {
     }
 
     private void convertToTransitionTable(TransitionTable transitionTable, HashMap<String, HashMap> delta) {
-        for (String s : delta.keySet()) {
-            State state = new State(s);
+        for (String inout : delta.keySet()) {
+            State state = new State(inout);
 
-            HashMap hashMap = delta.get(s);
+            HashMap hashMap = delta.get(inout);
             Transition transition = new Transition();
 
-            for (Object o2 : hashMap.keySet()) {
-                transition.put((String) o2, new State((String) hashMap.get(o2)));
+            for (Object transitionInput : hashMap.keySet()) {
+                transition.put((String) transitionInput, new State((String) hashMap.get(transitionInput)));
             }
             transitionTable.put(state, transition);
         }
