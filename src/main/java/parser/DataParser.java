@@ -1,4 +1,11 @@
+package parser;
+
 import com.google.gson.Gson;
+import state.State;
+import transition.Transition;
+import transition.TransitionTable;
+import tuple.JsonObject;
+import tuple.Tuple;
 
 import java.util.ArrayList;
 import java.util.HashMap;

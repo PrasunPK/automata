@@ -1,5 +1,9 @@
+package tuple;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import state.State;
+import transition.TransitionTable;
 
 import java.util.ArrayList;
 

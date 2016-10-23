@@ -1,3 +1,5 @@
+package state;
+
 import lombok.Getter;
 
 @Getter

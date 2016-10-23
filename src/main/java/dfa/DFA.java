@@ -1,3 +1,9 @@
+package dfa;
+
+import state.State;
+import transition.TransitionFunction;
+import transition.TransitionTable;
+
 import java.util.ArrayList;
 
 public class DFA {

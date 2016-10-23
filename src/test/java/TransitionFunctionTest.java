@@ -1,7 +1,12 @@
+import exception.InvalidStateException;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import state.State;
+import transition.Transition;
+import transition.TransitionFunction;
+import transition.TransitionTable;
 
 import java.util.ArrayList;
 

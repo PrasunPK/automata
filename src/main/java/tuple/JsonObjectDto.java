@@ -1,3 +1,5 @@
+package tuple;
+
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 

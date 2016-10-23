@@ -1,4 +1,11 @@
+package app;
+
 import com.google.gson.Gson;
+import dfa.DFA;
+import parser.DataParser;
+import tuple.JsonObject;
+import tuple.JsonObjectDto;
+import tuple.Tuple;
 
 import java.io.File;
 import java.io.FileInputStream;
