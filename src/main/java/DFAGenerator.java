@@ -46,10 +46,13 @@ public class DFAGenerator {
     private static void iterateOverCases(DFA dfa, ArrayList<String> failCases) {
         ArrayList<String> f = new ArrayList<>();
         for (String fail : failCases) {
-            System.out.println(fail);
             String[] split = fail.split("");
             Collections.addAll(f, split);
-            dfa.isLanguage(f);
+            if (dfa.isLanguage(f)) {
+                System.out.println( "PASSED : "  + fail);
+            } else {
+                System.out.println( "FAILED : " + fail);
+            }
         }
     }
 

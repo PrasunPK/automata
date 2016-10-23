@@ -85,15 +85,14 @@ public class DFATest {
         ArrayList<String> inputString = new ArrayList<>();
         inputString.addAll(Collections.singletonList("2"));
 
-        thrown.expect(InvalidAlphabetException.class);
-        dfa.isLanguage(inputString);
+        assertFalse(dfa.isLanguage(inputString));
     }
 
     @Test
     public void shouldThrowErrorWhenAnInvalidStateIsIncludeInTransitionTable() throws RuntimeException {
         Transition wrongTransitionFromQ1 = new Transition();
         wrongTransitionFromQ1.put("0", q2);
-        transitionTable.put(q1,wrongTransitionFromQ1);
+        transitionTable.put(q1, wrongTransitionFromQ1);
 
         DFA dfa = new DFA(states, alphabets, transitionTable, q0, finalState);
         ArrayList<String> inputString = new ArrayList<>();
@@ -109,5 +108,22 @@ public class DFATest {
         inputString.addAll(asList("1", "0", "1"));
         DFA dfa = new DFA(states, alphabets, transitionTable, q0, finalState);
         assertTrue(dfa.isLanguage(inputString));
+    }
+
+    @Test
+    public void shouldPassForEmptyStringWhenInitialStateIsFinalState() throws Exception {
+        ArrayList<String> inputString = new ArrayList<>();
+        inputString.addAll(asList("", "1", "0", "1"));
+        finalState.add(q0);
+        DFA dfa = new DFA(states, alphabets, transitionTable, q0, finalState);
+        assertTrue(dfa.isLanguage(inputString));
+    }
+
+    @Test
+    public void shouldPassForEmptyStringWhenInitialStateIsNotFinalState() throws Exception {
+        ArrayList<String> inputString = new ArrayList<>();
+        inputString.addAll(asList("", "1", "0", "1"));
+        DFA dfa = new DFA(states, alphabets, transitionTable, q0, finalState);
+        assertFalse(dfa.isLanguage(inputString));
     }
 }

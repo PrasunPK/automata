@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class TransitionFunction {
 
@@ -14,8 +15,12 @@ public class TransitionFunction {
     public State transitToFinalState(State initialState, ArrayList<String> inputStrings, TransitionTable transitionTable) {
         State currentState = initialState;
         for (String input : inputStrings) {
-            Transition transition = transitionTable.get(currentState);
-            currentState = transition.get(input);
+            if (Objects.equals(input, "")) {
+                currentState = initialState;
+            } else {
+                Transition transition = transitionTable.get(currentState);
+                currentState = transition.get(input);
+            }
         }
         return currentState;
     }

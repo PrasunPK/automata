@@ -22,12 +22,21 @@ public class DFA {
         if (isValid(inputString) && transitionFunction.validateStates(states, transitionTable)) {
             finalState = transitionFunction.transitToFinalState(initialState, inputString, transitionTable);
         } else {
-            throw new InvalidAlphabetException();
+            return false;
         }
         return finalStates.contains(finalState);
     }
 
     private boolean isValid(ArrayList<String> inputString) {
-        return alphabets.containsAll(inputString);
+        for (String s : inputString) {
+            if (!isEmptyStringAccepted(s) && !alphabets.contains(s)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isEmptyStringAccepted(String s) {
+        return s.equals("") && finalStates.contains(initialState);
     }
 }
